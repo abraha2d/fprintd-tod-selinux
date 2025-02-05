@@ -1,0 +1,19 @@
+
+module fprintd_policy 1.0;
+
+require {
+	type unlabeled_t;
+	type tmpfs_t;
+	type init_t;
+	type fprintd_t;
+	class file { create execute getattr link map open read unlink write };
+}
+
+#============= fprintd_t ==============
+allow fprintd_t tmpfs_t:file { create getattr link open read unlink write };
+
+#!!!! This avc can be allowed using the boolean 'domain_can_mmap_files'
+allow fprintd_t tmpfs_t:file map;
+
+#============= init_t ==============
+allow init_t unlabeled_t:file execute;
