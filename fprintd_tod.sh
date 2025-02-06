@@ -49,4 +49,4 @@ sepolicy manpage -p . -d fprintd_tod_t
 # Generate a rpm package for the newly generated policy
 
 pwd=$(pwd)
-rpmbuild --define "_sourcedir ${pwd}" --define "_specdir ${pwd}" --define "_builddir ${pwd}" --define "_srcrpmdir ${pwd}" --define "_rpmdir ${pwd}" --define "_buildrootdir ${pwd}/.build"  -ba fprintd_selinux.spec
+rpmbuild --define "_sourcedir ${pwd}" --define "_specdir ${pwd}" --define "_builddir ${pwd}" --define "_srcrpmdir ${pwd}" --define "_rpmdir ${pwd}" --define "_buildrootdir ${pwd}/.build"  -ba fprintd_tod_selinux.spec
