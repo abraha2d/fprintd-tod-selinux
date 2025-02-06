@@ -10,8 +10,8 @@ fi
 
 if [ $# -eq 1 ]; then
 	if [ "$1" = "--update" ] ; then
-		time=`ls -l --time-style="+%x %X" fprintd.te | awk '{ printf "%s %s", $6, $7 }'`
-		rules=`ausearch --start $time -m avc --raw -se fprintd`
+		time=`ls -l --time-style="+%x %X" fprintd_tod.te | awk '{ printf "%s %s", $6, $7 }'`
+		rules=`ausearch --start $time -m avc --raw -se fprintd_tod`
 		if [ x"$rules" != "x" ] ; then
 			echo "Found avc's to update policy with"
 			echo -e "$rules" | audit2allow -R
@@ -19,7 +19,7 @@ if [ $# -eq 1 ]; then
 			read ANS
 			if [ "$ANS" = "y" -o "$ANS" = "Y" ] ; then
 				echo "Updating policy"
-				echo -e "$rules" | audit2allow -R >> fprintd.te
+				echo -e "$rules" | audit2allow -R >> fprintd_tod.te
 				# Fall though and rebuild policy
 			else
 				exit 0
@@ -39,11 +39,11 @@ fi
 
 echo "Building and Loading Policy"
 set -x
-make -f /usr/share/selinux/devel/Makefile fprintd.pp || exit
-/usr/sbin/semodule -i fprintd.pp
+make -f /usr/share/selinux/devel/Makefile fprintd_tod.pp || exit
+/usr/sbin/semodule -i fprintd_tod.pp
 
 # Generate a man page of the installed module
-sepolicy manpage -p . -d fprintd_t
+sepolicy manpage -p . -d fprintd_tod_t
 # Fixing the file context on /usr/libexec/fprintd
 /sbin/restorecon -F -R -v /usr/libexec/fprintd
 # Generate a rpm package for the newly generated policy

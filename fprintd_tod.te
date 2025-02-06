@@ -1,12 +1,12 @@
 
-module fprintd_policy 1.0;
+module fprintd_tod 1.0;
 
 require {
-	type unlabeled_t;
 	type tmpfs_t;
 	type init_t;
 	type fprintd_t;
-	class file { create execute getattr link map open read unlink write };
+	type fprintd_tmp_t;
+	class file { create getattr link map open read unlink write };
 }
 
 #============= fprintd_t ==============
@@ -16,4 +16,4 @@ allow fprintd_t tmpfs_t:file { create getattr link open read unlink write };
 allow fprintd_t tmpfs_t:file map;
 
 #============= init_t ==============
-allow init_t unlabeled_t:file execute;
+allow init_t fprintd_tmp_t:file unlink;
