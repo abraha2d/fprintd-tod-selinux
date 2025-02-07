@@ -25,16 +25,15 @@ This package installs and sets up the SELinux
 policy security module for fprintd_tod.
 
 %prep
-%setup -q -n fprintd-selinux-%{major_version}-%{release_version}
+%setup -q -n fprintd_tod_selinux-%{major_version}-%{release_version}
 
 %build
 make -f /usr/share/selinux/devel/Makefile fprintd_tod.pp
 
 %install
 install -d %{buildroot}%{_datadir}/selinux/packages
-install -m 644 %{SOURCE0} %{buildroot}%{_datadir}/selinux/packages
+install -m 644 fprintd_tod.pp %{buildroot}%{_datadir}/selinux/packages
 install -d %{buildroot}/etc/selinux/targeted/contexts/users/
-
 
 %post
 semodule -n -i %{_datadir}/selinux/packages/fprintd_tod.pp
