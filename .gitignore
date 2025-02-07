@@ -1,0 +1,7 @@
+# Ignore generated files and directories
+# NOTE: if one of the file *.if or *.fc becomes NON-generated
+#       it needs to be removed from this list
+*.if
+*.fc
+*.pp
+tmp/
