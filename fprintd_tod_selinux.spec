@@ -2,7 +2,7 @@
 %define relabel_files()     restorecon -R /usr/libexec/fprintd;
 %define selinux_policyver   41.31-1
 %define major_version       1.0
-%define release_version     2
+%define release_version     3
 
 Name:       fprintd_tod_selinux
 Version:	%{major_version}
@@ -18,6 +18,7 @@ Source0:	https://github.com/ferdiu/fprintd_tod_selinux/archive/refs/tags/v%{majo
 Requires: policycoreutils-python-utils, libselinux-utils
 Requires(post): selinux-policy-base >= %{selinux_policyver}, policycoreutils-python-utils
 Requires(postun): policycoreutils-python-utils
+BuildRequires: make, selinux-policy-devel
 BuildArch: noarch
 
 %description
