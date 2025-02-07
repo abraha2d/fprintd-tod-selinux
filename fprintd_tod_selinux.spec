@@ -2,7 +2,7 @@
 %define relabel_files()     restorecon -R /usr/libexec/fprintd;
 %define selinux_policyver   41.31-1
 %define major_version       1.0
-%define release_version     1
+%define release_version     2
 
 Name:       fprintd_tod_selinux
 Version:	%{major_version}
