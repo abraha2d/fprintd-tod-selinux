@@ -1,6 +1,6 @@
 %global debug_package       %{nil}
 %define relabel_files()     restorecon -R /usr/libexec/fprintd;
-%define selinux_policyver   41.31-1
+%define selinux_policyver   38
 %define major_version       1.0
 %define release_version     3
 
